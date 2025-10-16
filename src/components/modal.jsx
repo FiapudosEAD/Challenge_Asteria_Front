@@ -8,7 +8,7 @@ export default function Modal({ title, fields, isOpen, onClose }) {
 
   return (
     <div className="bg-black/[30%] h-screen fixed inset-0 z-40">
-      <form className="w-[25%] h-screen bg-white ml-auto">
+      <form className="w-[100%] h-screen bg-white ml-auto md:w-[40%] lg:w-[25%]">
         <h1 className="w-full text-center bg-zinc-900 text-amber-400 text-2xl font-semibold p-4">
           {title}
         </h1>
