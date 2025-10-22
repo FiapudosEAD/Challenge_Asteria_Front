@@ -5,7 +5,9 @@ export default function AppRoutes() {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <div className="pt-24 lg md:pt-32">
+        <Outlet />
+      </div>
     </>
   );
 }

@@ -5,11 +5,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 
 import AppRoutes from "./routes/appRoutes";
+import AuthRoutes from "./routes/authRoutes";
 
 //Import páginas
-import Login from "./pages/loginPage";
-import Register from "./pages/registerPage";
-import Dashboard from "./pages/dashboardPage";
+import Login from "./pages/login";
+import Register from "./pages/cadastro";
+import Home from "./pages/home";
 import Products from "./pages/productsPage";
 import Sells from "./pages/sellsPage";
 import PDV from "./pages/pdvPage";
@@ -17,11 +18,17 @@ import PDV from "./pages/pdvPage";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppRoutes />,
+    element: <AuthRoutes />,
     children: [
       { index: true, element: <Login /> },
       { path: "registro", element: <Register /> },
-      { path: "dashboard", element: <Dashboard /> },
+    ],
+  },
+  {
+    path: "/",
+    element: <AppRoutes />,
+    children: [
+      { path: "dashboard", element: <Home /> },
       { path: "produtos", element: <Products /> },
       { path: "vendas", element: <Sells /> },
       { path: "pdv", element: <PDV /> },
