@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 // options: [{ value: '123', label: 'Produto XPTO' }, ...]
 export default function ComboBox({
-  type,
+  type = "tipo-venda",
   value,
   setValue,
   options = [],

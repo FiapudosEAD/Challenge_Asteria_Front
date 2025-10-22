@@ -26,7 +26,7 @@ export default function Modal({ title, fields, isOpen, onClose }) {
             }
 
             if (field.type === "select") {
-              return <ComboBox type={field.comboType} />;
+              return <ComboBox type={field.comboType} options={field.options} />;
             }
 
             return null;
