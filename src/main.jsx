@@ -13,7 +13,7 @@ import Home from "./pages/home";
 import Products from "./pages/productsPage";
 import Sells from "./pages/sellsPage";
 import PDV from "./pages/pdvPage";
-import NotFoundPage from "./pages/pageNotFound";
+import PageNotFound from "./pages/pageNotFound";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       { path: "produtos", element: <Products /> },
       { path: "vendas", element: <Sells /> },
       { path: "pdv", element: <PDV /> },
-      { path: "*", element: <NotFoundPage /> },
+      { path: "*", element: <PageNotFound /> },
     ],
   },
 ]);

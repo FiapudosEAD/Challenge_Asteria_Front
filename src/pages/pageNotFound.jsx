@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from '../components/buttons';
 import Logo from '/logo_asteria.svg';
 
-export default function NotFoundPage() {
+export default function PageNotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background text-white p-4">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-sm w-full text-center flex flex-col items-center">
