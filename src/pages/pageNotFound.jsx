@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PrimaryButton } from '../components/buttons';
+import Button from '../components/buttons';
 import Logo from '/logo_asteria.svg';
 
 export default function NotFoundPage() {
@@ -21,7 +21,7 @@ export default function NotFoundPage() {
         </p>
 
         <Link to="/" className="w-full">
-          <PrimaryButton>Voltar ao Início</PrimaryButton>
+          <Button>Voltar ao Início</Button>
         </Link>
 
       </div>

@@ -1,5 +1,3 @@
-
-
 import Input from "../components/input";
 import Table from "../components/table";
 import Modal from "../components/modal";
