@@ -2,7 +2,7 @@ import Input from "../components/input";
 import Table from "../components/table";
 import Modal from "../components/modal";
 import ModalDelete from "../components/modal_delete";
-import ComboBox from "../components/ComboBox";
+import ComboBox from "../components/combobox";
 import api from "../services/api";
 import { useForm } from "../hooks/useForm";
 import { formatCurrency, formatDate } from "../utils/formatters";
