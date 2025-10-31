@@ -1,37 +1,45 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import Button from "../components/buttons";
+import { useAuth } from "../context/AuthContext"; 
 
 export default function Register() {
   const [formData, setFormData] = useState({
-    name: "",
-    cpf: "",
+    nome: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+  
+  const { register } = useAuth();
+  const navigate = useNavigate();
 
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => { 
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword)
+    if (formData.password !== formData.confirmPassword) {
       return alert("As senhas não conferem!");
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    if (users.some((u) => u.email === formData.email))
-      return alert("E-mail já cadastrado!");
-    users.push({ ...formData, confirmPassword: undefined });
-    localStorage.setItem("users", JSON.stringify(users));
-    alert("Cadastro realizado com sucesso!");
-    window.location.href = "/login";
+    }
+    if (formData.password.length < 6) {
+      return alert("A senha deve ter no mínimo 6 caracteres.");
+    }
+   
+    const registerSuccess = await register(formData.nome, formData.email, formData.password);
+
+    if (registerSuccess) {
+      navigate('/');
+    }
+  };
+
+  const setValue = (name) => (value) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
     <div className="bg-gradient-to-r from-orange-600 to-orange-400 flex h-screen">
       <div className="w-full ml-auto bg-gray-100 flex justify-center items-center lg:w-[50%]">
         <form
-          action={handleSubmit}
+          onSubmit={handleSubmit}
           className="w-[80%] flex flex-col items-center gap-4"
         >
           <img
@@ -43,33 +51,27 @@ export default function Register() {
           <div className="w-full flex flex-col gap-4">
             <Input
               type="text"
-              placeholder="Nome"
-              value={formData.name}
-              setValue={(v) => setFormData({ ...formData, name: v })}
-            />
-            <Input
-              type="text"
-              placeholder="CPF/CNPJ"
-              value={formData.cpf}
-              setValue={(v) => setFormData({ ...formData, cpf: v })}
+              placeholder="Nome Completo"
+              value={formData.nome}
+              setValue={setValue("nome")}
             />
             <Input
               type="email"
               placeholder="E-mail"
               value={formData.email}
-              setValue={(v) => setFormData({ ...formData, email: v })}
+              setValue={setValue("email")}
             />
             <Input
               type="password"
-              placeholder="Senha"
+              placeholder="Senha (mín. 6 caracteres)"
               value={formData.password}
-              setValue={(v) => setFormData({ ...formData, password: v })}
+              setValue={setValue("password")}
             />
             <Input
               type="password"
               placeholder="Confirmar senha"
               value={formData.confirmPassword}
-              setValue={(v) => setFormData({ ...formData, confirmPassword: v })}
+              setValue={setValue("confirmPassword")}
             />
             <Button type={"submit"} message={"Cadastrar"} />
           </div>

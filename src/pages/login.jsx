@@ -1,21 +1,25 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import Button from "../components/buttons";
+import { useAuth } from "../context/AuthContext"; 
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const { login } = useAuth(); 
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find((u) => u.email === email);
-    if (!email.includes("@") || !email.includes(".com"))
+    if (!email.includes("@") || !email.includes(".com")) {
       return alert("E-mail inválido!");
-    if (!user) return alert("Cadastro não encontrado!");
-    if (senha !== user.password) return alert("E-mail ou senha incorretos!");
-    alert("Login realizado com sucesso!");
-    window.location.href = "/home";
+    }
+
+    const loginSuccess = await login(email, senha); 
+    if (loginSuccess) {
+      navigate('/dashboard');
+    }
   };
 
   return (
