@@ -55,7 +55,7 @@ export default function Login() {
           <p className="text-gray-500 text-sm mt-4">
             Novo aqui?{" "}
             <a
-              href="/registro"
+              href="/cadastro"
               className="text-orange-600 font-semibold hover:underline"
             >
               Cadastre-se
