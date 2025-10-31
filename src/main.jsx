@@ -17,24 +17,22 @@ import PageNotFound from "./pages/pageNotFound";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <AuthRoutes />,
     children: [
-      { index: true, element: <Login /> },
+      { path: "/", element: <Login /> },
       { path: "registro", element: <Register /> },
     ],
   },
   {
-    path: "/",
     element: <AppRoutes />,
     children: [
       { path: "dashboard", element: <Home /> },
       { path: "produtos", element: <Products /> },
       { path: "vendas", element: <Sells /> },
       { path: "pdv", element: <PDV /> },
-      { path: "*", element: <PageNotFound /> },
     ],
   },
+  { path: "*", element: <PageNotFound /> }, 
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
