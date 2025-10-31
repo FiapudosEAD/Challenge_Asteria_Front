@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Card from "../components/card";
-import ComboBox from "../components/ComboBox";
+import ComboBox from "../components/combobox";
 import Table from "../components/table";
 import api from "../services/api";
 
